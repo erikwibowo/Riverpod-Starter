@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/utils/ui.dart';
 import 'package:riverpod_starter/widgets/action/theme.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
@@ -17,14 +18,12 @@ class HomeFragment extends StatelessWidget {
           onTap: () {},
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                child: Text(
-                  ":)",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge
-                      ?.copyWith(fontWeight: FontWeight.bold),
+              ClipOval(
+                child: SvgPicture.network(
+                  'https://www.svgrepo.com/show/5125/avatar.svg',
+                  height: 45,
+                  width: 45,
+                  fit: BoxFit.cover,
                 ),
               ),
               SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_starter/fragments/home_fragment.dart';
+import 'package:riverpod_starter/fragments/profile_fragment.dart';
 import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
 
@@ -15,6 +16,8 @@ class HomePage extends ConsumerWidget {
           index: ref.watch(bottomNavigationBarProvider),
           children: const [
             HomeFragment(),
+            HomeFragment(),
+            ProfileFragment(),
           ],
         ),
         bottomNavigationBar: NavigationBar(
