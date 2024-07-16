@@ -41,4 +41,16 @@ ThemeData themeDark = ThemeData(
   extensions: <ThemeExtension<dynamic>>[
     AppColorScheme.dark,
   ],
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppUi.radius),
+    ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppUi.radius),
+      ),
+    ),
+  ),
 );
