@@ -78,6 +78,9 @@ class ProfileFragment extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () => Get.offAll(const LoginPage()),
+                          style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.error),
                           child: const Text('Keluar'),
                         ),
                       ],

@@ -190,11 +190,6 @@ class RegisterPage extends StatelessWidget {
                     const Text("Sudah punya akun?"),
                     TextButton(
                       onPressed: () => Get.back(),
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppUi.radius),
-                        ),
-                      ),
                       child: const Text("Masuk"),
                     ),
                   ],

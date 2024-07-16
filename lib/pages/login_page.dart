@@ -149,11 +149,6 @@ class LoginPage extends ConsumerWidget {
                     const Text("Belum punya akun?"),
                     TextButton(
                       onPressed: () => Get.to(const RegisterPage()),
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppUi.radius),
-                        ),
-                      ),
                       child: const Text("Daftar"),
                     ),
                   ],
