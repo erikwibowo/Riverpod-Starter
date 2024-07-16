@@ -16,43 +16,40 @@ class HomeFragment extends ConsumerWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: false,
-        title: GestureDetector(
-          onTap: () => ref.read(bottomNavigationBarProvider.notifier).state = 2,
-          child: Row(
-            children: [
-              ClipOval(
-                child: SvgPicture.network(
-                  'https://www.svgrepo.com/show/5125/avatar.svg',
-                  height: 45,
-                  width: 45,
-                  fit: BoxFit.cover,
-                ),
+        title: Row(
+          children: [
+            ClipOval(
+              child: SvgPicture.network(
+                'https://www.svgrepo.com/show/5125/avatar.svg',
+                height: 45,
+                width: 45,
+                fit: BoxFit.cover,
               ),
-              SizedBox(
-                width: AppUi.sizeboxSmall,
+            ),
+            SizedBox(
+              width: AppUi.sizeboxSmall,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Selamat Datang!",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(
+                    "Nama Pengguna",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                    softWrap: true,
+                    maxLines: 1,
+                    overflow: TextOverflow.visible,
+                  )
+                ],
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Selamat Datang!",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    Text(
-                      "Nama Pengguna",
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                      softWrap: true,
-                      maxLines: 1,
-                      overflow: TextOverflow.visible,
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: const [
           ThemeAction(),
