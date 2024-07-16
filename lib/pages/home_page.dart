@@ -17,15 +17,17 @@ class _HomePageState extends ConsumerState<HomePage> {
   late PageController _pageController;
 
   @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: 0);
-  }
-
-  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _pageController = PageController(
+      initialPage: ref.watch(bottomNavigationBarProvider),
+    );
   }
 
   @override
