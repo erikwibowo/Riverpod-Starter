@@ -1,28 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_starter/fragments/home_fragment.dart';
+import 'package:riverpod_starter/fragments/notification_fragment.dart';
 import 'package:riverpod_starter/fragments/profile_fragment.dart';
 import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SystemUi(
       child: Scaffold(
-        body: IndexedStack(
-          index: ref.watch(bottomNavigationBarProvider),
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            ref.read(bottomNavigationBarProvider.notifier).state = index;
+          },
           children: const [
             HomeFragment(),
-            HomeFragment(),
+            NotificationFragment(),
             ProfileFragment(),
           ],
         ),
         bottomNavigationBar: NavigationBar(
           backgroundColor: Theme.of(context).canvasColor,
           onDestinationSelected: (index) {
+            _pageController.jumpToPage(index);
             ref.read(bottomNavigationBarProvider.notifier).state = index;
           },
           selectedIndex: ref.watch(bottomNavigationBarProvider),

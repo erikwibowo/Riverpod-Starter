@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/utils/ui.dart';
 import 'package:riverpod_starter/widgets/action/theme.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
 
-class HomeFragment extends StatelessWidget {
+class HomeFragment extends ConsumerWidget {
   const HomeFragment({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SystemUi(
         child: Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: false,
         title: GestureDetector(
-          onTap: () {},
+          onTap: () => ref.read(bottomNavigationBarProvider.notifier).state = 2,
           child: Row(
             children: [
               ClipOval(

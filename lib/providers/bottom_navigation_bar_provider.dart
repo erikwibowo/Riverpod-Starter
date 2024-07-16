@@ -1,3 +1,3 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final bottomNavigationBarProvider = StateProvider.autoDispose<int>((ref) => 0);
+final bottomNavigationBarProvider = StateProvider<int>((ref) => 0);

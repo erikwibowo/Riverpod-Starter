@@ -44,17 +44,19 @@ class ProfileFragment extends StatelessWidget {
               leading: const Icon(Icons.person_rounded),
               title: const Text('Akun'),
               trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () {
-                // Navigate to My Account
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings_rounded),
               title: const Text('Pengaturan'),
               trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () {
-                // Navigate to Settings
-              },
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.info_rounded),
+              title: const Text('Tentang'),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.logout_rounded),
