@@ -3,5 +3,5 @@ class AppConfig {
   static String appNameDetail =
       "An starter app flutter with riverpod state managemant";
 
-  static String baseUrl = "https://money-manager.erikwibowo.com/api";
+  static String baseUrl = "https://jarvis.erikwibowo.com/api";
 }

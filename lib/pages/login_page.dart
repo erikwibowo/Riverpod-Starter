@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:riverpod_starter/pages/home_page.dart';
+import 'package:riverpod_starter/models/login_model.dart';
 import 'package:riverpod_starter/pages/register_page.dart';
+import 'package:riverpod_starter/providers/login_provider.dart';
+import 'package:riverpod_starter/providers/text_editting_controller_provider.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
@@ -13,6 +15,20 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loginState = ref.watch(loginProvider);
+
+    ref.listen<AsyncValue<LoginModel?>>(loginProvider, (previous, next) {
+      next.whenOrNull(
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(error.toString()),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+          );
+        },
+      );
+    });
     return SystemUi(
       child: Scaffold(
         appBar: AppBar(
@@ -80,6 +96,7 @@ class LoginPage extends ConsumerWidget {
                   height: AppUi.sizeboxMedium,
                 ),
                 TextField(
+                  controller: ref.watch(emailControllerProvider),
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
@@ -99,6 +116,7 @@ class LoginPage extends ConsumerWidget {
                   height: AppUi.sizeboxMedium,
                 ),
                 TextField(
+                  controller: ref.watch(passwordControllerProvider),
                   keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.done,
                   obscureText: true,
@@ -125,7 +143,10 @@ class LoginPage extends ConsumerWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: FilledButton(
-                    onPressed: () => Get.to(const HomePage()),
+                    onPressed: () => ref.read(loginProvider.notifier).login(
+                          ref.read(emailControllerProvider).text,
+                          ref.read(passwordControllerProvider).text,
+                        ),
                     style: FilledButton.styleFrom(
                       padding:
                           EdgeInsets.symmetric(vertical: AppUi.paddingMedium),
@@ -133,9 +154,16 @@ class LoginPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(AppUi.radius),
                       ),
                     ),
-                    child: const Text(
-                      "Masuk",
-                      style: TextStyle(
+                    child: Text(
+                      loginState.when(
+                        data: (data) {
+                          return "Masuk";
+                        },
+                        skipError: true,
+                        error: (error, _) => "Masuk",
+                        loading: () => "Masuk...",
+                      ),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
