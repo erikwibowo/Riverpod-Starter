@@ -13,7 +13,7 @@ final loginProvider =
   return LoginNotifier();
 });
 
-final logoutProvider = Provider<LogoutNotifier>((ref) {
+final logoutProvider = Provider((ref) {
   return LogoutNotifier();
 });
 
