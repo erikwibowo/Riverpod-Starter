@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/pages/login_page.dart';
+import 'package:riverpod_starter/providers/auth_provider.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
 
-class ProfileFragment extends StatelessWidget {
+class ProfileFragment extends ConsumerWidget {
   const ProfileFragment({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SystemUi(
         child: Scaffold(
       appBar: AppBar(
@@ -79,7 +81,7 @@ class ProfileFragment extends StatelessWidget {
                           child: const Text('Batal'),
                         ),
                         TextButton(
-                          onPressed: () => Get.offAll(const LoginPage()),
+                          onPressed: () => ref.read(logoutProvider).logout(),
                           style: TextButton.styleFrom(
                               foregroundColor:
                                   Theme.of(context).colorScheme.error),

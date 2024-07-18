@@ -14,9 +14,17 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = ref.read(pageControllerProvider);
+  }
+
   @override
   void dispose() {
-    ref.read(pageControllerProvider).dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -25,7 +33,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     return SystemUi(
       child: Scaffold(
         body: PageView(
-          controller: ref.read(pageControllerProvider),
+          controller: _pageController,
           onPageChanged: (index) {
             ref.read(bottomNavigationBarProvider.notifier).state = index;
           },
@@ -38,7 +46,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         bottomNavigationBar: NavigationBar(
           backgroundColor: Theme.of(context).canvasColor,
           onDestinationSelected: (index) {
-            ref.watch(pageControllerProvider).jumpToPage(index);
+            _pageController.jumpToPage(index);
             ref.read(bottomNavigationBarProvider.notifier).state = index;
           },
           selectedIndex: ref.watch(bottomNavigationBarProvider),
