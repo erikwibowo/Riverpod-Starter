@@ -27,6 +27,27 @@ ThemeData themeLight = ThemeData(
       ),
     ),
   ),
+  inputDecorationTheme: const InputDecorationTheme().copyWith(
+    filled: true,
+    border: UnderlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.all(
+        Radius.circular(AppUi.radius),
+      ),
+    ),
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      padding: EdgeInsets.symmetric(vertical: AppUi.paddingMedium),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppUi.radius),
+      ),
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
 );
 
 ThemeData themeDark = ThemeData(
@@ -50,6 +71,27 @@ ThemeData themeDark = ThemeData(
     style: TextButton.styleFrom(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppUi.radius),
+      ),
+    ),
+  ),
+  inputDecorationTheme: const InputDecorationTheme().copyWith(
+    filled: true,
+    border: UnderlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.all(
+        Radius.circular(AppUi.radius),
+      ),
+    ),
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      padding: EdgeInsets.symmetric(vertical: AppUi.paddingMedium),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppUi.radius),
+      ),
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.bold,
       ),
     ),
   ),

@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/models/login_model.dart';
 import 'package:riverpod_starter/pages/register_page.dart';
 import 'package:riverpod_starter/providers/login_provider.dart';
-import 'package:riverpod_starter/providers/text_editting_controller_provider.dart';
+import 'package:riverpod_starter/providers/text_field_provider.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
@@ -99,17 +99,9 @@ class LoginPage extends ConsumerWidget {
                   controller: ref.watch(emailControllerProvider),
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    filled: true,
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     hintText: "nama@email.com",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
-                      ),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
@@ -119,22 +111,20 @@ class LoginPage extends ConsumerWidget {
                   controller: ref.watch(passwordControllerProvider),
                   keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: ref.watch(obscureTextProvider),
                   decoration: InputDecoration(
-                    filled: true,
                     labelText: 'Kata Sandi',
                     hintText: "********",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
+                    suffixIcon: IconButton(
+                      onPressed: () => ref
+                          .read(obscureTextProvider.notifier)
+                          .state = !ref.watch(obscureTextProvider),
+                      icon: Icon(
+                        ref.watch(obscureTextProvider)
+                            ? Icons.visibility_off_rounded
+                            : Icons.visibility_rounded,
                       ),
                     ),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.visibility_rounded),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
@@ -147,13 +137,6 @@ class LoginPage extends ConsumerWidget {
                           ref.read(emailControllerProvider).text,
                           ref.read(passwordControllerProvider).text,
                         ),
-                    style: FilledButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: AppUi.paddingMedium),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppUi.radius),
-                      ),
-                    ),
                     child: Text(
                       loginState.when(
                         data: (data) {
@@ -162,9 +145,6 @@ class LoginPage extends ConsumerWidget {
                         skipError: true,
                         error: (error, _) => "Masuk",
                         loading: () => "Masuk...",
-                      ),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

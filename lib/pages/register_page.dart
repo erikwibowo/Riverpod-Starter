@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/pages/home_page.dart';
+import 'package:riverpod_starter/providers/text_field_provider.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
 import 'package:riverpod_starter/widgets/system_ui.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends ConsumerWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SystemUi(
       child: Scaffold(
         appBar: AppBar(
@@ -77,39 +79,23 @@ class RegisterPage extends StatelessWidget {
                 SizedBox(
                   height: AppUi.sizeboxMedium,
                 ),
-                TextField(
+                const TextField(
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    filled: true,
                     labelText: 'Nama Lengkap',
                     hintText: "Nama Lengkap Anda",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
-                      ),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
                   height: AppUi.sizeboxMedium,
                 ),
-                TextField(
+                const TextField(
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    filled: true,
                     labelText: 'Email',
                     hintText: "nama@email.com",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
-                      ),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
@@ -118,22 +104,20 @@ class RegisterPage extends StatelessWidget {
                 TextField(
                   keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.next,
-                  obscureText: true,
+                  obscureText: ref.watch(obscureTextProvider),
                   decoration: InputDecoration(
-                    filled: true,
                     labelText: 'Kata Sandi',
                     hintText: "********",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
+                    suffixIcon: IconButton(
+                      onPressed: () => ref
+                          .read(obscureTextProvider.notifier)
+                          .state = !ref.watch(obscureTextProvider),
+                      icon: Icon(
+                        ref.watch(obscureTextProvider)
+                            ? Icons.visibility_off_rounded
+                            : Icons.visibility_rounded,
                       ),
                     ),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.visibility_rounded),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
@@ -142,22 +126,20 @@ class RegisterPage extends StatelessWidget {
                 TextField(
                   keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.done,
-                  obscureText: true,
+                  obscureText: ref.watch(obscureTextProvider),
                   decoration: InputDecoration(
-                    filled: true,
                     labelText: 'Konfirmasi Kata Sandi',
                     hintText: "********",
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppUi.radius),
+                    suffixIcon: IconButton(
+                      onPressed: () => ref
+                          .read(obscureTextProvider.notifier)
+                          .state = !ref.watch(obscureTextProvider),
+                      icon: Icon(
+                        ref.watch(obscureTextProvider)
+                            ? Icons.visibility_off_rounded
+                            : Icons.visibility_rounded,
                       ),
                     ),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.visibility_rounded),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
                 SizedBox(
@@ -167,18 +149,8 @@ class RegisterPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: FilledButton(
                     onPressed: () => Get.to(const HomePage()),
-                    style: FilledButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: AppUi.paddingMedium),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppUi.radius),
-                      ),
-                    ),
                     child: const Text(
                       "Daftar",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                   ),
                 ),
