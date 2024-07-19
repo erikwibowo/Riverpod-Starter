@@ -1,5 +1,5 @@
 class AppUi {
-  static double radius = 5;
+  static double radius = 10;
 
   static double sizeboxLarge = 40;
   static double sizeboxMedium = 20;

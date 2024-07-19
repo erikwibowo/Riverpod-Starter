@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:riverpod_starter/pages/home_page.dart';
+import 'package:riverpod_starter/screens/pages/home_page.dart';
 import 'package:riverpod_starter/providers/text_field_provider.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
-import 'package:riverpod_starter/widgets/system_ui.dart';
+import 'package:riverpod_starter/screens/widgets/system_ui.dart';
 
 class RegisterPage extends ConsumerWidget {
   const RegisterPage({super.key});

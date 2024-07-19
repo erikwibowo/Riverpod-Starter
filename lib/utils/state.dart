@@ -29,6 +29,15 @@ class Get {
     );
   }
 
+  static errorSnackBar(String text) {
+    ScaffoldMessenger.of(currentContext).showSnackBar(
+      SnackBar(
+        content: Text(text),
+        backgroundColor: Theme.of(currentContext).colorScheme.error,
+      ),
+    );
+  }
+
   static double get width {
     return MediaQuery.of(currentContext).size.width;
   }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/models/login_model.dart';
-import 'package:riverpod_starter/pages/register_page.dart';
+import 'package:riverpod_starter/screens/pages/register_page.dart';
 import 'package:riverpod_starter/providers/auth_provider.dart';
 import 'package:riverpod_starter/providers/text_field_provider.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
-import 'package:riverpod_starter/widgets/system_ui.dart';
+import 'package:riverpod_starter/screens/widgets/system_ui.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -16,19 +16,6 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loginState = ref.watch(loginProvider);
-
-    ref.listen<AsyncValue<LoginModel?>>(loginProvider, (previous, next) {
-      next.whenOrNull(
-        error: (error, stackTrace) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(error.toString()),
-              backgroundColor: Theme.of(context).colorScheme.error,
-            ),
-          );
-        },
-      );
-    });
     return SystemUi(
       child: Scaffold(
         appBar: AppBar(

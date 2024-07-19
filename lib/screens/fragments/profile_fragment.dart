@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/providers/auth_provider.dart';
+import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/providers/profile_provider.dart';
 import 'package:riverpod_starter/utils/ui.dart';
-import 'package:riverpod_starter/widgets/system_ui.dart';
+import 'package:riverpod_starter/screens/widgets/system_ui.dart';
 
 class ProfileFragment extends ConsumerWidget {
   const ProfileFragment({super.key});
@@ -94,7 +95,12 @@ class ProfileFragment extends ConsumerWidget {
                           child: const Text('Batal'),
                         ),
                         TextButton(
-                          onPressed: () => ref.read(logoutProvider).logout(),
+                          onPressed: () {
+                            ref
+                                .read(bottomNavigationBarProvider.notifier)
+                                .state = 0;
+                            ref.read(logoutProvider).logout();
+                          },
                           style: TextButton.styleFrom(
                               foregroundColor:
                                   Theme.of(context).colorScheme.error),

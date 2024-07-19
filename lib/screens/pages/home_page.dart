@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_starter/fragments/home_fragment.dart';
-import 'package:riverpod_starter/fragments/notification_fragment.dart';
-import 'package:riverpod_starter/fragments/profile_fragment.dart';
+import 'package:riverpod_starter/providers/profile_provider.dart';
+import 'package:riverpod_starter/screens/fragments/home_fragment.dart';
+import 'package:riverpod_starter/screens/fragments/product_fragment.dart';
+import 'package:riverpod_starter/screens/fragments/profile_fragment.dart';
 import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
-import 'package:riverpod_starter/widgets/system_ui.dart';
+import 'package:riverpod_starter/screens/widgets/system_ui.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -57,9 +58,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               label: 'Beranda',
             ),
             NavigationDestination(
-              selectedIcon: Icon(Icons.notifications_rounded),
-              icon: Icon(Icons.notifications_outlined),
-              label: 'Pemberitahuan',
+              selectedIcon: Icon(Icons.shopping_bag_rounded),
+              icon: Icon(Icons.shopping_bag_outlined),
+              label: 'Belanja',
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.person_rounded),

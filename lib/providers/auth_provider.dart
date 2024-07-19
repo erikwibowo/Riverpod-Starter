@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:riverpod_starter/models/login_model.dart';
-import 'package:riverpod_starter/pages/home_page.dart';
-import 'package:riverpod_starter/pages/login_page.dart';
+import 'package:riverpod_starter/screens/pages/home_page.dart';
+import 'package:riverpod_starter/screens/pages/login_page.dart';
 import 'package:riverpod_starter/utils/config.dart';
 import 'package:riverpod_starter/utils/shared_preference.dart';
 import 'package:riverpod_starter/utils/state.dart';
@@ -41,6 +41,7 @@ class LoginNotifier extends StateNotifier<AsyncValue<LoginModel?>> {
         SharedPreferencesHelper.instance.setBool("isLogin", true);
         Get.offAll(const HomePage());
       } else {
+        Get.errorSnackBar(jsonResponse['message']);
         state = AsyncValue.error(jsonResponse['message'], StackTrace.current);
       }
     } catch (e) {

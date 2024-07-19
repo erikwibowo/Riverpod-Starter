@@ -4,14 +4,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/providers/profile_provider.dart';
 import 'package:riverpod_starter/utils/ui.dart';
-import 'package:riverpod_starter/widgets/action/theme.dart';
-import 'package:riverpod_starter/widgets/system_ui.dart';
+import 'package:riverpod_starter/screens/widgets/action/theme.dart';
+import 'package:riverpod_starter/screens/widgets/system_ui.dart';
 
 class HomeFragment extends ConsumerWidget {
   const HomeFragment({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(profileProvider);
     final profileState = ref.watch(profileProvider);
     return SystemUi(
       child: Scaffold(

@@ -15,6 +15,11 @@ ThemeData themeLight = ThemeData(
   extensions: <ThemeExtension<dynamic>>[
     AppColorScheme.light,
   ],
+  cardTheme: const CardTheme().copyWith(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppUi.radius),
+    ),
+  ),
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppUi.radius),
@@ -62,6 +67,11 @@ ThemeData themeDark = ThemeData(
   extensions: <ThemeExtension<dynamic>>[
     AppColorScheme.dark,
   ],
+  cardTheme: const CardTheme().copyWith(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppUi.radius),
+    ),
+  ),
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppUi.radius),
