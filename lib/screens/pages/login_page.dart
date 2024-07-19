@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:riverpod_starter/models/login_model.dart';
 import 'package:riverpod_starter/screens/pages/register_page.dart';
 import 'package:riverpod_starter/providers/auth_provider.dart';
 import 'package:riverpod_starter/providers/text_field_provider.dart';

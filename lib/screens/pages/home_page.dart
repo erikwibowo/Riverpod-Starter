@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_starter/providers/profile_provider.dart';
 import 'package:riverpod_starter/screens/fragments/home_fragment.dart';
-import 'package:riverpod_starter/screens/fragments/product_fragment.dart';
+import 'package:riverpod_starter/screens/fragments/movie_fragment.dart';
 import 'package:riverpod_starter/screens/fragments/profile_fragment.dart';
 import 'package:riverpod_starter/providers/bottom_navigation_bar_provider.dart';
 import 'package:riverpod_starter/screens/widgets/system_ui.dart';
@@ -40,7 +39,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           },
           children: const [
             HomeFragment(),
-            NotificationFragment(),
+            MovieFragment(),
             ProfileFragment(),
           ],
         ),
@@ -58,9 +57,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               label: 'Beranda',
             ),
             NavigationDestination(
-              selectedIcon: Icon(Icons.shopping_bag_rounded),
-              icon: Icon(Icons.shopping_bag_outlined),
-              label: 'Belanja',
+              selectedIcon: Icon(Icons.movie),
+              icon: Icon(Icons.movie_rounded),
+              label: 'Film',
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.person_rounded),
