@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_starter/providers/movie_provider.dart';
+import 'package:riverpod_starter/screens/pages/movie_detail_page.dart';
 import 'package:riverpod_starter/screens/shimmers/list_shimmer.dart';
 import 'package:riverpod_starter/screens/widgets/system_ui.dart';
+import 'package:riverpod_starter/utils/state.dart';
 import 'package:riverpod_starter/utils/ui.dart';
 
 class MovieFragment extends ConsumerWidget {
@@ -24,11 +26,17 @@ class MovieFragment extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text("Film"),
+          title: const TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search_rounded),
+              filled: false,
+              hintText: "Cari film",
+            ),
+          ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.search_rounded),
+              icon: const Icon(Icons.filter_alt),
             ),
           ],
         ),
@@ -47,7 +55,7 @@ class MovieFragment extends ConsumerWidget {
                     }
                     final movie = movies[index];
                     return ListTile(
-                      onTap: () {},
+                      onTap: () => Get.to(MovieDetailPage(movie: movie)),
                       title: Text(
                         movie.title.toString(),
                         maxLines: 2,
@@ -70,10 +78,6 @@ class MovieFragment extends ConsumerWidget {
                     );
                   },
                 ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.filter_alt),
         ),
       ),
     );

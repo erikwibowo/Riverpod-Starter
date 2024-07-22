@@ -58,7 +58,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.movie),
-              icon: Icon(Icons.movie_rounded),
+              icon: Icon(Icons.movie_outlined),
               label: 'Film',
             ),
             NavigationDestination(
